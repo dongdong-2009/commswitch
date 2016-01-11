@@ -450,7 +450,7 @@ static void query_others(struct smart_sensor *sensor) {
 }
 
 static void config_led(struct gather_port * pgather) {
-	char led_name[30];
+	char led_name[50];
 	int fd;
 	sprintf(led_name, "/sys/class/leds/com%d_tx/delay_on", pgather->portIndex);
 
