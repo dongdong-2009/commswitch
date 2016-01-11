@@ -22,8 +22,8 @@ static void insert_sensor_config(struct port_config * port, int addr, int type);
 
 static struct config_global *global_config = NULL;
 
-extern const char * const config_begin;
-extern const char * const config_end;
+extern const char const config_begin[];
+extern const char const config_end[];
 
 static void insert_sensor_config(struct port_config * port, int addr, int type) {
 	if (port == NULL)
@@ -115,14 +115,15 @@ struct config_global * get_global_config() {
 		char buffer[128];
 
 
-		if ((access("test.c", F_OK)) == -1) // file does not exist!
+		if ((access("./config.ini", F_OK)) == -1) // file does not exist!
 		{
 
-			int fd_config=open("./config.ini",O_RDWR|O_CREAT|O_TRUNC);
-			if(fd_config>=0)
+			FILE* file=fopen("./config.ini","wb");
+			if(file!=NULL)
 			{
-				write(fd_config,config_begin,config_end-config_begin);
-				close(fd_config);
+				fwrite(config_begin,config_end-config_begin,1,file);
+				fflush(file);
+				fclose(file);
 			}
 
 		}
