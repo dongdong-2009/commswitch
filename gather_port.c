@@ -585,7 +585,7 @@ static void * proc_work(void * data) {
 				if (sensor->timeout_count >= MAX_TIMEOUT_COUNT)
 					continue;
 				query_sensor(sensor);
-
+				usleep(1000);
 			}
 			//query dc sensor digital
 			for (i = 0; i < pgather->sensor_num; i++) {
@@ -594,6 +594,7 @@ static void * proc_work(void * data) {
 				if (sensor->timeout_count >= MAX_TIMEOUT_COUNT)
 					continue;
 				query_dc_digital(sensor);
+				usleep(1000);
 
 			}
 
@@ -601,6 +602,7 @@ static void * proc_work(void * data) {
 			for(i=0;i<5;i++)
 			{
 				query_next_bad_sensor(pgather);
+				usleep(1000);
 			}
 
 			gettimeofday(&stop, NULL);
