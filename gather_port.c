@@ -608,8 +608,7 @@ static void * proc_work(void * data) {
 			gettimeofday(&stop, NULL);
 			timeval_subtract(&diff, &start, &stop);
 
-			__useconds_t interval = diff.tv_sec * 1000000 + diff.tv_usec
-					+ 10000;
+			__useconds_t interval = diff.tv_sec * 1000000 + diff.tv_usec;
 
 			if (interval < QUERY_INTERVAL) {
 				usleep(QUERY_INTERVAL - interval);
